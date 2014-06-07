@@ -1,0 +1,11 @@
+{
+  "name": "hm-mongo-dao",
+  "version": "0.0.1",
+  "description": "A data access object to MongoDB for the hapi-medium project.",
+  "main": "app.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "author": "Owen Scott (owen.m.scott@gmail.com)",
+  "license": "MIT"
+}
