@@ -7,5 +7,9 @@
     "test": "node test/test.js"
   },
   "author": "Owen Scott (owen.m.scott@gmail.com)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "mongodb": "~1.4.5",
+    "underscore": "~1.6.0"
+  }
 }
