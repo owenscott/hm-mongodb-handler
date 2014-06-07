@@ -1,5 +1,5 @@
 {
-  "name": "hm-mongo-dao",
+  "name": "hm-mongodb-handler",
   "version": "0.0.1",
   "description": "A data access object to MongoDB for the hapi-medium project.",
   "main": "app.js",
