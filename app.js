@@ -5,6 +5,7 @@ var mongoClient = require('mongodb').MongoClient,
 	_ = require('underscore'),
 	validateRequest;
 
+console.log(mongoObjectId);
 
 module.exports =  function(dbUrl) {
 
@@ -30,6 +31,7 @@ module.exports =  function(dbUrl) {
 		mongoClient.connect(dbUrl, function(err, db) {
 			if (err) {throw err;}
 			db.collection(options.collectionName).insert(requestObject, function (err, data) {
+				if (err) {throw err};
 				reply(data[0]);
 				db.close();
 			}) 
@@ -85,9 +87,9 @@ module.exports =  function(dbUrl) {
 	this._createRequestObject = function(request) {
 
 		if (request.params && request.params._id && request.params._id.length === 24) {
-			request.params._id = mongoObjectId(request.params._id);
+			request.params._id = new mongoObjectId(request.params._id);
 		}
-		
+
 		return  _.extend( request.params || {}, request.payload || {});
 
 	}
