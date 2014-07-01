@@ -1,11 +1,10 @@
 //TODO: need to persist connection to db rather than open a new connection for every request
+//TORO: factor out the repeated code into a method
 
 var mongoClient = require('mongodb').MongoClient,
 	mongoObjectId = require('mongodb').ObjectID,
 	_ = require('underscore'),
 	validateRequest;
-
-console.log(mongoObjectId);
 
 module.exports =  function(dbUrl) {
 
