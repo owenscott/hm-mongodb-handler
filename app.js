@@ -1,5 +1,5 @@
 //TODO: need to persist connection to db rather than open a new connection for every request
-//TORO: factor out the repeated code into a method
+//TODO: factor out the repeated code into a method
 
 var mongoClient = require('mongodb').MongoClient,
 	mongoObjectId = require('mongodb').ObjectID,
@@ -14,10 +14,25 @@ module.exports =  function(dbUrl) {
 
 			var requestObject = self._createRequestObject(request);
 
+			console.log(request.query);
+			//if it's paginated then request.query = { page: '1', per_page: '25' }
+
 			mongoClient.connect(dbUrl, function(err, db) {
 				if (err) {throw err;}
 				db.collection(options.collectionName).find(requestObject, options.projection).toArray( function (err, data) {
-					reply(data);
+					var page = parseInt(request.query.page),
+						perPage = parseInt(request.query.per_page);
+					
+					if ((page === 0 || page) && perPage) {
+
+						reply({
+							items: data.slice(page*perPage,(page*perPage) + perPage),
+							total_count: data.length
+						});	
+					}
+					else {
+						reply(data);
+					}
 					db.close();
 				}) 
 			});
