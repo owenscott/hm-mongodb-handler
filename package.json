@@ -9,7 +9,7 @@
   "author": "Owen Scott (owen.m.scott@gmail.com)",
   "license": "MIT",
   "dependencies": {
-    "mongodb": "^1.4.7",
-    "underscore": "~1.6.0"
+    "mongodb": "^1.4.8",
+    "underscore": "^1.6.0"
   }
 }
