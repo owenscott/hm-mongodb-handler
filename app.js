@@ -14,16 +14,13 @@ module.exports =  function(dbUrl) {
 
 			var requestObject = self._createRequestObject(request);
 
-			console.log(request.query);
-			//if it's paginated then request.query = { page: '1', per_page: '25' }
-
 			mongoClient.connect(dbUrl, function(err, db) {
 				if (err) {throw err;}
 				db.collection(options.collectionName).find(requestObject, options.projection).toArray( function (err, data) {
+					
 					var page = parseInt(request.query.page),
 						perPage = parseInt(request.query.per_page);
-					
-					if ((page === 0 || page) && perPage) {
+				if ((page === 0 || page) && perPage) {
 
 						reply({
 							items: data.slice(page*perPage,(page*perPage) + perPage),
@@ -54,6 +51,7 @@ module.exports =  function(dbUrl) {
 
 	this.getObject = function(request, reply, options) {
 		var requestObject = self._createRequestObject(request);
+
 		mongoClient.connect(dbUrl, function(err, db) {
 			if (err) {throw err;}
 			db.collection(options.collectionName).find(requestObject, options.projection).toArray( function (err, data) {
@@ -67,9 +65,16 @@ module.exports =  function(dbUrl) {
 	}
 
 	this.updateObject = function(request, reply, options) {
+
 		var requestObject = self._createRequestObject(request);
 		mongoClient.connect(dbUrl, function(err, db) {
 			if (err) {throw err;}
+			//NOTE: added this if statement from _createRequestObject b/c something weird was happening with mongodb hex strings for objectid when
+			//they got passed between functions (and/or extended with _)
+			//TODO: refactor
+			if (request.params && request.params._id && request.params._id.length === 24) {
+				request.params._id = new mongoObjectId(request.params._id);
+			}
 			db.collection(options.collectionName).save(requestObject, function(err, data) {
 				if (err) {throw err;}
 				// reply(requestObject); //TODO: this is kind of hacky. should return data but it's just a count
@@ -101,6 +106,7 @@ module.exports =  function(dbUrl) {
 	this._createRequestObject = function(request) {
 
 		if (request.params && request.params._id && request.params._id.length === 24) {
+			'request id is being converted to mongoid'
 			request.params._id = new mongoObjectId(request.params._id);
 		}
 
@@ -109,4 +115,3 @@ module.exports =  function(dbUrl) {
 	}
 
 }
-

@@ -1,6 +1,6 @@
 {
   "name": "hm-mongodb-handler",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A data access object to MongoDB for the hapi-medium project.",
   "main": "app.js",
   "scripts": {
