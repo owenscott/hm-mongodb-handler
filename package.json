@@ -1,0 +1,38 @@
+{
+  "name": "hm-mongodb-handler",
+  "version": "0.0.4",
+  "description": "A data access object to MongoDB for the hapi-medium project.",
+  "main": "app.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "author": {
+    "name": "Owen Scott",
+    "url": "owen.m.scott@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "mongodb": "^1.4.7",
+    "underscore": "~1.6.0"
+  },
+  "_id": "hm-mongodb-handler@0.0.3",
+  "dist": {
+    "shasum": "bc71aaa0236676687880d37a1288806180e57c23",
+    "tarball": "http://registry.npmjs.org/hm-mongodb-handler/-/hm-mongodb-handler-0.0.3.tgz"
+  },
+  "_from": "hm-mongodb-handler@0.0.3",
+  "_npmVersion": "1.3.2",
+  "_npmUser": {
+    "name": "owenscott",
+    "email": "owen.m.scott@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "owenscott",
+      "email": "owen.m.scott@gmail.com"
+    }
+  ],
+  "directories": {},
+  "_shasum": "bc71aaa0236676687880d37a1288806180e57c23",
+  "_resolved": "https://registry.npmjs.org/hm-mongodb-handler/-/hm-mongodb-handler-0.0.3.tgz"
+}
